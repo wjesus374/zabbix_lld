@@ -2,32 +2,32 @@
 
 Script para criação de itens LLD para o Zabbix.
 
-*Testado no Zabbix 2.2 e 4.0
+* Testado no Zabbix 2.2 e 4.0
 
 Modo de utilização:
 
 # Modo script
 
-*Cria arquivo de configuração inicial (cuidado: Essa opção vai destruir todo o conteúdo do arquivo [se existir]):
+* Cria arquivo de configuração inicial (cuidado: Essa opção vai destruir todo o conteúdo do arquivo [se existir]):
 <pre>/etc/zabbix/scripts/notify_lld.py startupconfig</pre>
 
-*Cria um item:
+* Cria um item:
 <pre>/etc/zabbix/scripts/notify_lld.py createitem 1 "Exemplo" "Trigger de teste"</pre>
 
-*Mostra na tela todos os itens criados:
+* Mostra na tela todos os itens criados:
 
 <pre>/etc/zabbix/scripts/notify_lld.py discovery</pre>
 
-*Exemplo de output:
+* Exemplo de output:
 <pre>{"data": [{"{#INFO}": "Exemplo", "{#STATUS}": "1", "{#DESC}": "Trigger de teste", "{#NID}": 1551885187}]}</pre>
 
-*Deleta item:
+* Deleta item:
 <pre>/etc/zabbix/scripts/notify_lld.py deleteitem 1551885187</pre>
 
-*Exemplo de output:
+* Exemplo de output:
 <pre>/etc/zabbix/scripts/notify_lld.py discovery
 /etc/zabbix/scripts/notify_lld.py discovery
-*{"data": []}</pre>
+{"data": []}</pre>
 
 #Modo LLD Zabbix
 
@@ -35,7 +35,7 @@ No arquivo de configuração do Zabbix ex:*/etc/zabbix/zabbix_agentd.conf* inser
 
 <pre>UserParameter=notify_lld[*],/etc/zabbix/scripts/notify_lld.py $1 $2 $3</pre>
 
-*Reiniciar o Agente do Zabbix (sudo systemctl restart zabbix-agent)
+* Reiniciar o Agente do Zabbix (sudo systemctl restart zabbix-agent)
 
 Na interface web do Zabbix, criar/editar um host, configurar o agente no host, ir em *Regras de descoberta* e clicar em "Criar regra de descoberta". No nome colocar qualquer nome, na chave colocar: *notify_lld[discovery]*, no intervalo de atualização colocar 30 segundos (ou mais) e em *Manter dados de recursos perdidos por (em dias)* deixar o valor *1* (não é necessário mais do que isso.
 
